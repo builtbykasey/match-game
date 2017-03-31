@@ -105,7 +105,7 @@ MatchGame.flipCard = function($card, $game) {
       setTimeout(function () {
 
         var resetCss = {
-          backgroundColor: 'rgb(32,64,86)',
+          backgroundColor: '#ff5a5f',
           color: 'rgb(255,255,255)'
         };
 
