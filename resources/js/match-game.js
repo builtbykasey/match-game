@@ -42,6 +42,7 @@ MatchGame.generateCardValues = function () {
 MatchGame.renderCards = function(cardValues, $game) {
   $game.empty();
   $game.data('flippedCards', []);
+  $game.data('matches', []);
 
   var colorArray = [
     'hsl(25,85%,65%)',
@@ -51,7 +52,7 @@ MatchGame.renderCards = function(cardValues, $game) {
     'hsl(220,85%,65%)',
     'hsl(265,85%,65%)',
     'hsl(310,85%,65%)',
-    'hsl(360,85%,65%)'
+    'hsl(177, 99%, 39%)'
   ];
 
   for (i = 0; i < cardValues.length; i++) {
@@ -86,7 +87,7 @@ MatchGame.flipCard = function($card, $game) {
   $card.css('background-color', $card.data('color')).text($card.data('value')).data('flipped', true);
 
   var flippedCards = $game.data('flippedCards');
-  //var number = $card.data('value');
+  var matches = $game.data('matches');
 
   flippedCards.push($card);
 
@@ -100,6 +101,9 @@ MatchGame.flipCard = function($card, $game) {
 
       flippedCards[0].css(matching);
       flippedCards[1].css(matching);
+
+      matches.push(flippedCards);
+      console.log(matches);
       $game.data('flippedCards', []);
     } else {
       setTimeout(function () {
@@ -119,6 +123,20 @@ MatchGame.flipCard = function($card, $game) {
 
       }, 350)
     }
+
+  }
+
+  if (matches.length === 8) {
+    alert('You are a WINNER!');
+    setTimeout(function () {
+
+      var $game = $('#game');
+      var randomCards = MatchGame.generateCardValues();
+      console.log(randomCards);
+      MatchGame.renderCards(randomCards, $game);
+
+    }, 200)
+
 
   }
 
