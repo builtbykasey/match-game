@@ -1,0 +1,113 @@
+$('.card').data('value', i);
+$('.card').data('flipped', false);
+$('.card').data('color', i - 1);
+
+Example:
+$(myObj).attr({"data-test-1": num1, "data-test-2": num2});
+
+
+var colorArray = [hsl(25,85%,65%), hsl(55,85%,65%), hsl(90,85%,65%), hsl(160,85%,65%), hsl(220,85%,65%), hsl(265,85%,65%), hsl(310,85%,65%), hsl(360,85%,65%)];
+
+$(document).ready(function () {
+  MatchGame.renderCards($randomArray, $game);
+});
+
+
+MatchGame.renderCards = function(cardValues, $game) {
+
+  $('#game').empty();
+
+  for (i = 0; i < cardValues.length; i++) {
+    var $newCard = $('.card').data({"value": i, "flipped": false, "color": i-1});
+    $('#game').append('$newCard');
+  }
+};
+
+
+Latest
+
+var $newCard = $('.card').data({"value": i, "flipped": false, "color": i-1});
+$('#game').append('$newCard');
+$('#game').append($newCard);
+
+---
+var cardStatus = $card.data('flipped');
+console.log(cardStatus);
+---
+MatchGame.renderCards = function(cardValues, $game) {
+  var colors = [
+  'hsl(25, 85%, 65%)',
+  'hsl(55, 85%, 65%)',
+  'hsl(90, 85%, 65%)',
+  'hsl(160, 85%, 65%)',
+  'hsl(220, 85%, 65%)',
+  'hsl(265, 85%, 65%)',
+  'hsl(310, 85%, 65%)',
+  'hsl(360, 85%, 65%)'];
+
+  $game.empty();
+  $game.data('flippedCards', []);
+
+  for (var valueIndex = 0; valueIndex < cardValues.length; valueIndex++) {
+  var value = cardValues[valueIndex];
+  var color = colors[value - 1];
+  var data = {
+  value: value,
+  color: color,
+  isFlipped: false
+  };
+
+  var $cardElement = $('<div class="col-xs-3 card"></div>');
+  $cardElement.data(data);
+
+  $game.append($cardElement);
+  }
+
+  $('.card').click(function() {
+  MatchGame.flipCard($(this), $('#game'));
+  });
+};
+
+
+$(document).ready(function() {
+  var $game = $('#game');
+  var values = MatchGame.generateCardValues();
+  MatchGame.renderCards(values, $game);
+});
+
+renderCards: All cards should have a data attribute called 'value'.
+renderCards: Card data 'value' should equal corresponding value in cardValues.
+renderCards: All cards should have a data attribute called 'color'.
+
+var $newCard = $('.card').data({'value': cardValues[i], 'flipped': false, 'color': i-1});
+
+flipCard
+
+if ($card.data('isFlipped')) {
+  return;
+}
+
+$card.css('background-color', $card.data('color')).text($card.data('value')).data('isFlipped', true);
+
+if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
+  var matchCss = {
+    backgroundColor: 'rgb(153,153,153)',
+    color: 'rgb(204,204,204)'
+  };
+  flippedCards[0].css(matchCss);
+  flippedCards[1].css(matchCss);
+} else {
+
+}
+
+if you look at the script they do this
+  $card.css('background-color', $card.data('color'))
+      .text($card.data('value'))
+      .data('isFlipped', true);
+  var flippedCards = $game.data('flippedCards');
+  flippedCards.push($card);
+ instead of what you do
+    $card.css('background-color', $card.data('color')).text($card.data('value')).data('flipped', true);
+    var flippedCards = $game.data('flippedCards');
+    var number = $card.data('value');
+    flippedCards.push(number);
