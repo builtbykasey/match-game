@@ -89,7 +89,6 @@ MatchGame.flipCard = function($card, $game) {
   //var number = $card.data('value');
 
   flippedCards.push($card);
-  console.log(flippedCards);
 
   if (flippedCards.length === 2) {
 
