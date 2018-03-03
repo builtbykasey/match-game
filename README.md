@@ -2,7 +2,7 @@
 
 ### Memory matching card game.
 
-[Live Game](https://kaseycolleen.github.io/match-game/)
+[Live Game](https://builtbykasey.github.io/match-game/)
 
 ## Game Objectives
 
